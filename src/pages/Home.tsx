@@ -3,7 +3,6 @@ import Header from './Header';
 import Footer from './Footer';
 
 const Home: Component = () => {
-  // フェードインアニメーション用のクラスを追加
   onMount(() => {
     const sections = document.querySelectorAll('section');
     sections.forEach((section) => {
@@ -24,14 +23,14 @@ const Home: Component = () => {
   });
 
   return (
-    <div class="min-h-screen flex flex-col bg-gradient-to-b from-[#F17C78] to-[#FFD1D1]">
+    <div class="min-h-screen flex flex-col bg-gradient-to-b from-[#F17C78] to-[#FFD1D1] overflow-x-hidden">
       <Header />
-      <main class="flex-grow p-4">
+      <main class="flex-grow p-4 w-full max-w-screen mx-auto">
         {/* Home Section */}
         <section id="home" class="mb-8 transition-all duration-1000 ease-in-out text-center">
           <h2 class="text-3xl font-cute text-white">東雲琥珀のサイトへようこそ！！</h2>
         </section>
-
+    
         {/* About Section */}
         <section id="about" class="mb-8 p-6 bg-white rounded-lg shadow-lg transition-all duration-1000 ease-in-out">
           <h2 class="text-3xl font-cute text-[#F17C78]">About 東雲琥珀</h2>
@@ -41,7 +40,7 @@ const Home: Component = () => {
             普段は <a href="https://misskey.gg/@kohaku_shinonome" class="text-blue-500 hover:text-blue-700 transition-colors duration-300">misskey.gg</a> にいるらしい。
           </p>
         </section>
-
+    
         {/* Accounts Section */}
         <section id="accounts" class="p-6 bg-white rounded-lg shadow-lg transition-all duration-1000 ease-in-out">
           <h2 class="text-3xl font-cute text-[#F17C78]">Accounts</h2>
