@@ -49,7 +49,7 @@ const Header: Component = () => {
       <nav
         class={`${
           isMenuOpen() ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'
-        } md:block absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-gradient-to-br from-[#FF6B6B]/90 to-[#FFD1D1]/90 backdrop-blur-md shadow-2xl md:shadow-none rounded-lg md:rounded-none z-10 transition-all duration-300 ease-in-out`}
+        } md:opacity-100 md:translate-y-0 absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-gradient-to-br from-[#FF6B6B]/90 to-[#FFD1D1]/90 backdrop-blur-md shadow-2xl md:shadow-none rounded-lg md:rounded-none z-10 transition-all duration-300 ease-in-out`}
       >
         <ul class="flex flex-col md:flex-row md:space-x-4 p-4 md:p-0">
           <li>
