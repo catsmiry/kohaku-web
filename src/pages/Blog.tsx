@@ -3,8 +3,16 @@ import Header from './Header';
 import Footer from './Footer';
 import { marked } from 'marked';
 
+function extractDate(content: string): Date | null {
+  const match = content.match(/^(?:date|Date)\s*:\s*(.+)$/im);
+  if (!match) return null;
+  const raw = match[1].trim();
+  const parsed = new Date(raw);
+  return isNaN(parsed.getTime()) ? null : parsed;
+}
+
 const Blog: Component = () => {
-  const [posts, setPosts] = createSignal<{ title: string; excerpt: string; content: string }[]>([]);
+  const [posts, setPosts] = createSignal<{ title: string; excerpt: string; content: string; updatedAt: string }[]>([]);
   const [selectedPost, setSelectedPost] = createSignal<{ title: string; content: string } | null>(null);
 
   // Fetch and parse markdown posts
@@ -18,21 +26,34 @@ const Blog: Component = () => {
       const content = await postFiles[path](); // 直接文字列として読み込む
       console.log(content); // デバッグ用
 
-      const parsedContent = await marked.parse(content, {
-        gfm: true, // GitHub Flavored Markdown を有効にする
-        breaks: true, // 改行を <br> に変換する
+      const contentWithoutDate = content.replace(/^(?:date|Date)\s*:\s*.*$/im, "");
+
+      const parsedContent = await marked.parse(contentWithoutDate, {
+        gfm: true,
+        breaks: true,
       });
       console.log(parsedContent); // デバッグ用
 
       const title = parsedContent.match(/<h1>(.*?)<\/h1>/)?.[1] || 'Untitled';
-      const excerpt = content.substring(0, 10) + '...'; // 最初の10文字を表示
+      const excerpt = contentWithoutDate.substring(0, 10) + '...'; // 最初の10文字を表示
+      const foundDate = extractDate(content);
+      const updatedAt =
+        foundDate?.toLocaleDateString("ja-JP", { timeZone: "Asia/Tokyo" }) || "不明";
 
       loadedPosts.push({
         title,
         excerpt,
         content: parsedContent,
+        updatedAt,
       });
     }
+
+    // JST 日時を文字列で保持しているため、比較用に Date に再変換し降順ソート
+    loadedPosts.sort((a, b) => {
+      const da = new Date(a.updatedAt);
+      const db = new Date(b.updatedAt);
+      return db.getTime() - da.getTime();
+    });
 
     setPosts(loadedPosts);
   });
@@ -68,6 +89,7 @@ const Blog: Component = () => {
                 <div class="mt-4 text-lg text-gray-700">
                   {post.excerpt}
                 </div>
+                <p>更新日時: {post.updatedAt}</p>
                 <button
                   class="mt-4 text-blue-500 hover:text-blue-700 transition-colors duration-300"
                   onClick={() => handleExpandPost(post)}
