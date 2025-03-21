@@ -50,7 +50,7 @@ const Home: Component = () => {
             <h3 class="text-xl font-cute text-[#F17C78] mt-4">Fediverse</h3>
             <ul>
               <li><a href="https://misskey.gg/@kohaku_shinonome" class="text-blue-500 hover:text-blue-700 transition-colors duration-300">Misskey.gg (MAIN)</a></li>
-              <li><a href="https://finity.social/@kohaku_shinonome" class="text-blue-500 hover:text-blue-700 transition-colors duration-300">Finity.social</a></li>
+              <li><a href="https://vocaloid.app/@kohaku_shinonome" class="text-blue-500 hover:text-blue-700 transition-colors duration-300">vocaloid.app</a></li>
             </ul>
             <h3 class="text-xl font-cute text-[#F17C78] mt-4">その他SNSなど</h3>
             <ul>
