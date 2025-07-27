@@ -77,7 +77,7 @@ const Blog: Component = () => {
         ) : (
           // コンパクト表示
           <section id="blog" class="mb-8 transition-all duration-1000 ease-in-out text-center">
-            <h2 class="text-3xl font-cute text-white">東雲琥珀のブログ</h2>
+            <h2 class="text-3xl font-cute text-white">こはくすきー</h2>
           </section>
         )}
 
