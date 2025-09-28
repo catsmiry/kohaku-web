@@ -36,3 +36,5 @@ const Home: Component = () => {
             普段は <a href="https://misskey.gg/@kohaku_shinonome" class="text-blue-500 hover:text-blue-700 transition-colors duration-300">misskey.gg</a> にいるらしい。
           </p>
         </section>
+// マジでよくわかってないけど頑張って開発してます
+        // 応援してね
