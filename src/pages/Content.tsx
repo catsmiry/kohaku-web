@@ -38,3 +38,7 @@ const Home: Component = () => {
         </section>
 // マジでよくわかってないけど頑張って開発してます
         // 応援してね
+        );
+      };
+
+        export default Content;
